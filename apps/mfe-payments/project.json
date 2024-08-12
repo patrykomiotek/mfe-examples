@@ -1,0 +1,9 @@
+{
+  "name": "mfe-payments",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mfe-payments/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project mfe-payments --web",
+  "targets": {}
+}
