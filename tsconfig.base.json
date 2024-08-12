@@ -18,6 +18,10 @@
       "about/Module": ["apps/about/src/remote-entry.ts"],
       "accounts/*": ["./apps/mfe-accounts/src/app/components/*"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],
+      "mfe-accounts/Module": ["apps/mfe-accounts/src/remote-entry.ts"],
+      "mfe-dashboard/Module": ["apps/mfe-dashboard/src/remote-entry.ts"],
+      "mfe-payments/Module": ["apps/mfe-payments/src/remote-entry.ts"],
+      "mfe-settings/Module": ["apps/mfe-settings/src/remote-entry.ts"],
       "shop/Module": ["apps/shop/src/remote-entry.ts"]
     }
   },

@@ -22,16 +22,18 @@ export default composePlugins(
       };
     }
 
-    // this will generate types for remotes for shell app and place it inside @mf-types
+    // this will generate types for remotes for shell app and place it inside apps/shell/@mf-types
     config.plugins?.push(
       new FederatedTypesPlugin({
         federationConfig: {
           ...moduleFederationConfig,
           filename: 'remoteEntry.js',
           remotes: {
-            shop: 'shop@http://localhost:4201/remoteEntry.js',
-            cart: 'cart@http://localhost:4202/remoteEntry.js',
-            about: 'about@http://localhost:4203/remoteEntry.js',
+            'mfe-accounts': 'mfe-accounts@http://localhost:4204/remoteEntry.js',
+            'mfe-dashboard':
+              'mfe-dashboard@http://localhost:4205/remoteEntry.js',
+            'mfe-payments': 'mfe-payments@http://localhost:4206/remoteEntry.js',
+            'mfe-settings': 'mfe-settings@http://localhost:4207/remoteEntry.js',
           },
         },
       })

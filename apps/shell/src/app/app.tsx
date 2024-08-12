@@ -5,24 +5,65 @@ import NxWelcome from './nx-welcome';
 import { Link, Route, Routes } from 'react-router-dom';
 import { importRemote } from '@module-federation/utilities';
 import type AboutModule from 'about/Module';
+import type DashboardModuleType from 'mfe-dashboard/Module';
+import type AccountsModuleType from 'mfe-accounts/Module';
+import type PaymentsModuleType from 'mfe-payments/Module';
+import type SettingsModuleType from 'mfe-settings/Module';
 
-// version with static module loading
-// const About = React.lazy(() => import('about/Module'));
+// static module loading
+// const MfeDashboard = React.lazy(() => import('mfe-dashboard/Module'));
 
-// version with dynamic module loading
-const About = React.lazy(() =>
-  importRemote<{ default: typeof AboutModule }>({
-    url: async () => Promise.resolve('http://localhost:4203'),
-    scope: 'about',
+// dynamic module loading
+const MfeDashboard = React.lazy(() =>
+  importRemote<{ default: typeof DashboardModuleType }>({
+    url: async () => Promise.resolve('http://localhost:4205'),
+    scope: 'mfe-dashboard',
     module: './Module',
     remoteEntryFileName: 'remoteEntry.js',
     esm: true,
   })
 );
 
-const Shop = React.lazy(() => import('shop/Module'));
+// static module loading
+// const MfeAccounts = React.lazy(() => import('mfe-accounts/Module'));
 
-const Cart = React.lazy(() => import('cart/Module'));
+const MfeAccounts = React.lazy(() =>
+  importRemote<{ default: typeof AccountsModuleType }>({
+    url: async () => Promise.resolve('http://localhost:4204'),
+    scope: 'mfe-accounts',
+    module: './Module',
+    remoteEntryFileName: 'remoteEntry.js',
+    esm: true,
+  })
+);
+
+// static module loading
+// const MfeSettings = React.lazy(() => import('mfe-settings/Module'));
+
+// dynamic module loading
+const MfeSettings = React.lazy(() =>
+  importRemote<{ default: typeof SettingsModuleType }>({
+    url: async () => Promise.resolve('http://localhost:4207'),
+    scope: 'mfe-settings',
+    module: './Module',
+    remoteEntryFileName: 'remoteEntry.js',
+    esm: true,
+  })
+);
+
+// static module loading
+// const MfePayments = React.lazy(() => import('mfe-payments/Module'));
+
+// dynamic module loading
+const MfePayments = React.lazy(() =>
+  importRemote<{ default: typeof PaymentsModuleType }>({
+    url: async () => Promise.resolve('http://localhost:4206'),
+    scope: 'mfe-payments',
+    module: './Module',
+    remoteEntryFileName: 'remoteEntry.js',
+    esm: true,
+  })
+);
 
 export function App() {
   return (
@@ -32,24 +73,24 @@ export function App() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/mfe-dashboard">Dashboard</Link>
         </li>
-
         <li>
-          <Link to="/shop">Shop</Link>
+          <Link to="/mfe-accounts">Accounts</Link>
         </li>
-
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link to="/mfe-payments">Payments</Link>
+        </li>
+        <li>
+          <Link to="/mfe-settings">Settings</Link>
         </li>
       </ul>
       <Routes>
         <Route path="/" element={<NxWelcome title="shell" />} />
-        <Route path="/about" element={<About />} />
-
-        <Route path="/shop" element={<Shop />} />
-
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/mfe-settings" element={<MfeSettings />} />
+        <Route path="/mfe-payments" element={<MfePayments />} />
+        <Route path="/mfe-dashboard" element={<MfeDashboard />} />
+        <Route path="/mfe-accounts" element={<MfeAccounts />} />
       </Routes>
     </React.Suspense>
   );

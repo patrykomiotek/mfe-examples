@@ -14,6 +14,7 @@ export default composePlugins(
   withNx(),
   withReact(),
   withModuleFederation(moduleFederationConfig, { dts: false }), // temporary workaround https://github.com/nrwl/nx/issues/27198#issuecomment-2275420582
+  // types are generated inside dist/apps/appName/@mf-types
   (config) => {
     config.plugins?.push(
       new FederatedTypesPlugin({

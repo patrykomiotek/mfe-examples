@@ -4,6 +4,84 @@
   "sourceRoot": "apps/mfe-dashboard/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project mfe-dashboard --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/mfe-dashboard",
+        "index": "apps/mfe-dashboard/src/index.html",
+        "baseHref": "/",
+        "main": "apps/mfe-dashboard/src/main.ts",
+        "tsConfig": "apps/mfe-dashboard/tsconfig.app.json",
+        "assets": [
+          "apps/mfe-dashboard/src/favicon.ico",
+          "apps/mfe-dashboard/src/assets"
+        ],
+        "styles": ["apps/mfe-dashboard/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/mfe-dashboard/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/mfe-dashboard/src/environments/environment.ts",
+              "with": "apps/mfe-dashboard/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/mfe-dashboard/webpack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mfe-dashboard:build",
+        "hmr": true,
+        "port": 4205
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mfe-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-dashboard:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "mfe-dashboard:build",
+        "watch": false,
+        "port": 4205
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mfe-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-dashboard:build:production"
+        }
+      }
+    }
+  }
 }

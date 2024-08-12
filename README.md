@@ -1,32 +1,32 @@
 # Microfrontends Example
 
 Applications:
-* app-shell, port 4000 (remote)
+* shell, port 4200 (host)
 
 ```bash
-nx run app-shell:serve
+nx serve shell
 ```
 
-* mfe-dashboard, port 4800 (remote)
+* mfe-dashboard, port 4205 (remote)
 ```bash
-nx run mfe-dashboard:serve
+nx serve mfe-dashboard
 ```
 
-* mfe-accounts, port 4200 (remote)
+* mfe-accounts, port 4204 (remote)
 ```bash
-nx run mfe-accounts:serve
-```
-
-
-* mfe-payments, port 4400 (remote)
-```bash
-nx run mfe-payments:serve
+nx serve mfe-accounts
 ```
 
 
-* mfe-settings, port 4600 (remote)
+* mfe-payments, port 4206 (remote)
 ```bash
-nx run mfe-settings:serve
+nx serve mfe-payments
+```
+
+
+* mfe-settings, port 4207 (remote)
+```bash
+nx serve mfe-settings
 ```
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>

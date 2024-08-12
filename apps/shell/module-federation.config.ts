@@ -17,7 +17,15 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-  remotes: ['shop', 'cart', 'about'],
+  remotes: [
+    'shop',
+    'cart',
+    'about',
+    'mfe-accounts',
+    'mfe-dashboard',
+    'mfe-payments',
+    'mfe-settings',
+  ],
 
   shared: (name, config) => {
     return false;

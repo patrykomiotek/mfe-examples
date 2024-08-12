@@ -4,6 +4,84 @@
   "sourceRoot": "apps/mfe-payments/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project mfe-payments --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/mfe-payments",
+        "index": "apps/mfe-payments/src/index.html",
+        "baseHref": "/",
+        "main": "apps/mfe-payments/src/main.ts",
+        "tsConfig": "apps/mfe-payments/tsconfig.app.json",
+        "assets": [
+          "apps/mfe-payments/src/favicon.ico",
+          "apps/mfe-payments/src/assets"
+        ],
+        "styles": ["apps/mfe-payments/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/mfe-payments/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/mfe-payments/src/environments/environment.ts",
+              "with": "apps/mfe-payments/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/mfe-payments/webpack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mfe-payments:build",
+        "hmr": true,
+        "port": 4206
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mfe-payments:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-payments:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "mfe-payments:build",
+        "watch": false,
+        "port": 4206
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mfe-payments:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-payments:build:production"
+        }
+      }
+    }
+  }
 }
