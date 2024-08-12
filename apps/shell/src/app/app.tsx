@@ -1,20 +1,31 @@
-import * as React from 'react';
+import { Suspense, lazy } from 'react';
 
 import NxWelcome from './nx-welcome';
 
-import { Link, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Link,
+  Outlet,
+  Route,
+  RouterProvider,
+  Routes,
+} from 'react-router-dom';
 import { importRemote } from '@module-federation/utilities';
-import type AboutModule from 'about/Module';
+
 import type DashboardModuleType from 'mfe-dashboard/Module';
 import type AccountsModuleType from 'mfe-accounts/Module';
 import type PaymentsModuleType from 'mfe-payments/Module';
 import type SettingsModuleType from 'mfe-settings/Module';
+import type SettingsPanelType from 'mfe-settings/SettingsPanel';
+import { NavMenu } from './components/NavMenu';
+import useSyncAppRouter from './hooks/useSyncAppRouter';
 
 // static module loading
 // const MfeDashboard = React.lazy(() => import('mfe-dashboard/Module'));
 
 // dynamic module loading
-const MfeDashboard = React.lazy(() =>
+// NOTE: if you provided changes in remote loaded dynamically, you need to restart host
+const MfeDashboard = lazy(() =>
   importRemote<{ default: typeof DashboardModuleType }>({
     url: async () => Promise.resolve('http://localhost:4205'),
     scope: 'mfe-dashboard',
@@ -27,7 +38,7 @@ const MfeDashboard = React.lazy(() =>
 // static module loading
 // const MfeAccounts = React.lazy(() => import('mfe-accounts/Module'));
 
-const MfeAccounts = React.lazy(() =>
+const MfeAccounts = lazy(() =>
   importRemote<{ default: typeof AccountsModuleType }>({
     url: async () => Promise.resolve('http://localhost:4204'),
     scope: 'mfe-accounts',
@@ -41,11 +52,23 @@ const MfeAccounts = React.lazy(() =>
 // const MfeSettings = React.lazy(() => import('mfe-settings/Module'));
 
 // dynamic module loading
-const MfeSettings = React.lazy(() =>
-  importRemote<{ default: typeof SettingsModuleType }>({
+// this is whole module
+// const MfeSettings = React.lazy(() =>
+//   importRemote<{ default: typeof SettingsModuleType }>({
+//     url: async () => Promise.resolve('http://localhost:4207'),
+//     scope: 'mfe-settings',
+//     module: './Module',
+//     remoteEntryFileName: 'remoteEntry.js',
+//     esm: true,
+//   })
+// );
+
+// this is component from remote
+const MfeSettingsPanel = lazy(() =>
+  importRemote<{ default: typeof SettingsPanelType }>({
     url: async () => Promise.resolve('http://localhost:4207'),
     scope: 'mfe-settings',
-    module: './Module',
+    module: './SettingsPanel', // specified in remote module-federation
     remoteEntryFileName: 'remoteEntry.js',
     esm: true,
   })
@@ -55,7 +78,7 @@ const MfeSettings = React.lazy(() =>
 // const MfePayments = React.lazy(() => import('mfe-payments/Module'));
 
 // dynamic module loading
-const MfePayments = React.lazy(() =>
+const MfePayments = lazy(() =>
   importRemote<{ default: typeof PaymentsModuleType }>({
     url: async () => Promise.resolve('http://localhost:4206'),
     scope: 'mfe-payments',
@@ -65,35 +88,62 @@ const MfePayments = React.lazy(() =>
   })
 );
 
-export function App() {
+// sync router between host and remote
+// check useSyncAppRouter and useGlobalRouter hooks
+const SettingsRouterHandler = () => {
+  useSyncAppRouter({ basepath: '/settings' });
+
   return (
-    <React.Suspense fallback={null}>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/mfe-dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/mfe-accounts">Accounts</Link>
-        </li>
-        <li>
-          <Link to="/mfe-payments">Payments</Link>
-        </li>
-        <li>
-          <Link to="/mfe-settings">Settings</Link>
-        </li>
-      </ul>
-      <Routes>
-        <Route path="/" element={<NxWelcome title="shell" />} />
-        <Route path="/mfe-settings" element={<MfeSettings />} />
-        <Route path="/mfe-payments" element={<MfePayments />} />
-        <Route path="/mfe-dashboard" element={<MfeDashboard />} />
-        <Route path="/mfe-accounts" element={<MfeAccounts />} />
-      </Routes>
-    </React.Suspense>
+    <Suspense>
+      <MfeSettingsPanel />
+    </Suspense>
   );
+};
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <>
+        <NavMenu />
+        <Outlet />
+      </>
+    ),
+    children: [
+      {
+        path: '/dashboard',
+        element: (
+          <Suspense>
+            <MfeDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/accounts',
+        element: (
+          <Suspense>
+            <MfeAccounts />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/payments',
+        element: (
+          <Suspense>
+            <MfePayments />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/settings/*',
+        element: <SettingsRouterHandler />,
+      },
+    ],
+  },
+]);
+
+export function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;

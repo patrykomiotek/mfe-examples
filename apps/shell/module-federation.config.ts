@@ -48,6 +48,14 @@ const config: ModuleFederationConfig = {
         requiredVersion: '18.3.1',
       },
     },
+    // {
+    //   libraryName: 'react-router-dom',
+    //   sharedConfig: {
+    //     eager: false,
+    //     singleton: true,
+    //     requiredVersion: '6.11.2',
+    //   },
+    // },
   ],
 };
 

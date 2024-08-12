@@ -1,11 +1,17 @@
 # Microfrontends Example
 
 Applications:
-* shell, port 4200 (host)
+* shell, port 4200 (host) this will run host and all remotes
+
+NOTE: `inside apps/shell/app/app.tsx` there are useful comments
+
+NOTE: for sync navigation state check hooks `useSyncAppRouter` and `useGlobalRouter` hooks
 
 ```bash
 nx serve shell
 ```
+
+You can also run remotes separately:
 
 * mfe-dashboard, port 4205 (remote)
 ```bash
@@ -28,6 +34,9 @@ nx serve mfe-payments
 ```bash
 nx serve mfe-settings
 ```
+
+For nested routes check `module-federation.config.ts` files. There is shared `react-router-dom` library and you can use e.g. `<Link />` component inside remote like `mfe-accounts`.
+
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
