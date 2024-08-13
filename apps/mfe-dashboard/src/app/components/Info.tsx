@@ -7,25 +7,11 @@ import styles from './styles.module.css';
 export const Info = () => {
   const { data, isError, isLoading } = useApi<InfoDto>(fetchInfo);
 
-  if (isLoading) {
-    return (
-      <div className={styles.borderBox}>
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className={styles.borderBox}>
-        <p>Error</p>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.borderBox}>
       <h3>Info</h3>
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error</p>}
       <p>{data?.message}</p>
     </div>
   );

@@ -40,6 +40,14 @@ const config: ModuleFederationConfig = {
         requiredVersion: '18.3.1',
       },
     },
+    {
+      libraryName: '@tanstack/react-query',
+      sharedConfig: {
+        eager: false,
+        singleton: true,
+        requiredVersion: '>=5.51.23',
+      },
+    },
     // {
     //   libraryName: 'react-router-dom',
     //   sharedConfig: {

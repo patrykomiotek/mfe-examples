@@ -7,25 +7,11 @@ import { fetchProducts } from '../services/products';
 export const Products = () => {
   const { data, isError, isLoading } = useApi<ProductDto[]>(fetchProducts);
 
-  if (isLoading) {
-    return (
-      <div className={styles.borderBox}>
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className={styles.borderBox}>
-        <p>Error</p>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.borderBox}>
       <h3>Products</h3>
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error</p>}
       <ul>
         {data?.map((product) => (
           <li key={product.id}>{product.name}</li>

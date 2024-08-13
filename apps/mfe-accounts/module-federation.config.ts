@@ -29,6 +29,14 @@ const config: ModuleFederationConfig = {
         requiredVersion: '18.3.1',
       },
     },
+    {
+      libraryName: '@tanstack/react-query',
+      sharedConfig: {
+        eager: false,
+        singleton: true,
+        requiredVersion: '>=5.51.23',
+      },
+    },
     // optional but if you want use router inside router (e.g. host browser router and remote memory router, you should keep this commented)
     // {
     //   libraryName: 'react-router-dom',

@@ -7,17 +7,11 @@ import styles from './styles.module.css';
 export const PaymentsHistory = () => {
   const { data, isError, isLoading } = useApi<PaymentDto[]>(fetchPayments);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError) {
-    return <p>Error</p>;
-  }
-
   return (
     <div className={styles.paymentsContainer}>
       <h1>Payments history</h1>
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error</p>}
       <ul>
         {data?.map((payment) => (
           <li key={payment.id}>

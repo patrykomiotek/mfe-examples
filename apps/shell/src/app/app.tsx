@@ -14,6 +14,8 @@ import type SettingsPanelType from 'mfe-settings/SettingsPanel';
 import useSyncAppRouter from './hooks/useSyncAppRouter';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // static module loading
 // const MfeDashboard = React.lazy(() => import('mfe-dashboard/Module'));
@@ -137,8 +139,24 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
+
+// @ts-ignore
+window.REACT_QUERY_CLIENT = queryClient;
+
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

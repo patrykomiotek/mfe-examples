@@ -1,5 +1,13 @@
 # Microfrontends Example
 
+## Quick start
+
+Make sure you have [NX](https://nx.dev/) installed. Then run command:
+
+```bash
+nx run-many -t serve -p bff-dashboard bff-accounts bff-payments shell
+```
+
 ## Applications:
 
 ### Backend
