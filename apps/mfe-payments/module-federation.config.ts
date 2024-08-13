@@ -5,6 +5,7 @@ const config: ModuleFederationConfig = {
 
   exposes: {
     './Module': './src/remote-entry.ts',
+    './PaymentsHistory': './src/app/components/remote-entry.ts',
   },
 
   shared: (name, config) => {

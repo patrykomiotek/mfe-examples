@@ -4,7 +4,7 @@ import { fetchPayments } from '../services/payments';
 
 import styles from './styles.module.css';
 
-export const PaymentsHistory = () => {
+const PaymentsHistory = () => {
   const { data, isError, isLoading } = useApi<PaymentDto[]>(fetchPayments);
 
   return (
@@ -22,3 +22,5 @@ export const PaymentsHistory = () => {
     </div>
   );
 };
+
+export default PaymentsHistory;

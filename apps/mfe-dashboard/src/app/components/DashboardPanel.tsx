@@ -20,6 +20,17 @@ const MfeRemoteAccountsList = lazy(() =>
   })
 );
 
+const MfeRemotePaymentsHistory = lazy(() =>
+  // FIXME: importRemote<{ default: typeof AccountsListType }>({
+  importRemote({
+    url: async () => Promise.resolve('http://localhost:4206'),
+    scope: 'mfe-payments',
+    module: './PaymentsHistory',
+    remoteEntryFileName: 'remoteEntry.js',
+    esm: true,
+  })
+);
+
 export const DashboardPanel = () => {
   return (
     <div>
@@ -33,6 +44,9 @@ export const DashboardPanel = () => {
         <div style={{ width: '100%' }}>
           <Suspense fallback={<p>Loading accounts...</p>}>
             <MfeRemoteAccountsList />
+          </Suspense>
+          <Suspense fallback={<p>Loading payments...</p>}>
+            <MfeRemotePaymentsHistory />
           </Suspense>
         </div>
         <div style={{ width: 200, flexDirection: 'column' }}>

@@ -31,7 +31,7 @@ window.REACT_QUERY_CLIENT =
 
 const AccountList = () => {
   // const { data, isError, isLoading } = useApi<AccountDto[]>(fetchAccounts);
-  const { data, isError, isLoading } = useQuery<AccountDto[]>({
+  const { data, isError, isLoading, refetch } = useQuery<AccountDto[]>({
     queryKey: ['accounts'],
     queryFn: fetchAccounts,
   });
@@ -46,6 +46,15 @@ const AccountList = () => {
           <li key={account.id}>{account.value}</li>
         ))}
       </ul>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <button onClick={() => refetch()}>Refetch</button>
+      </div>
     </div>
   );
 };
