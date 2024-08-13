@@ -1,11 +1,25 @@
+import { useApi } from '@mfexample/shared';
+import { AccountDto } from '../types/AccountDto';
+import { fetchAccounts } from '../services/accounts';
+
 const AccountList = () => {
+  const { data, isError, isLoading } = useApi<AccountDto[]>(fetchAccounts);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
+
   return (
     <div>
-      <h1>Accounts List</h1>
+      <h1>Accounts list</h1>
       <ul>
-        <li>Account #1: 12 1234 1234 1234 1234 1234 1234</li>
-        <li>Account #2: 32 4321 4321 4321 4321 4321 4321</li>
-        <li>Account #3: 45 6578 6578 6578 6578 6578 6578</li>
+        {data?.map((account) => (
+          <li key={account.id}>{account.value}</li>
+        ))}
       </ul>
     </div>
   );

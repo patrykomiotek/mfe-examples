@@ -1,1 +1,2 @@
-export declare const AccountList: () => import("react/jsx-runtime").JSX.Element;
+declare const AccountList: () => import("react/jsx-runtime").JSX.Element;
+export default AccountList;

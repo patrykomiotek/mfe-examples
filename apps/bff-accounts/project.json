@@ -1,0 +1,26 @@
+{
+  "name": "bff-accounts",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bff-accounts/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "bff-accounts:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bff-accounts:build:development"
+        },
+        "production": {
+          "buildTarget": "bff-accounts:build:production"
+        }
+      }
+    }
+  }
+}

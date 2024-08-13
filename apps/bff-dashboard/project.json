@@ -1,0 +1,26 @@
+{
+  "name": "bff-dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bff-dashboard/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "bff-dashboard:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bff-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "bff-dashboard:build:production"
+        }
+      }
+    }
+  }
+}

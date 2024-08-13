@@ -1,13 +1,27 @@
+import { useApi } from '@mfexample/shared';
+import { PaymentDto } from '../types/PaymentDto';
+import { fetchPayments } from '../services/payments';
+
 export const PaymentsHistory = () => {
+  const { data, isError, isLoading } = useApi<PaymentDto[]>(fetchPayments);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
+
   return (
     <div>
       <h1>Payments history</h1>
       <ul>
-        <li>Payment #5, 510 PLN, 01.08.2024</li>
-        <li>Payment #4, 200 PLN, 01.08.2024</li>
-        <li>Payment #3, 320 PLN, 01.08.2024</li>
-        <li>Payment #2, 440 PLN, 01.08.2024</li>
-        <li>Payment #1, 100 PLN, 01.08.2024</li>
+        {data?.map((payment) => (
+          <li key={payment.id}>
+            #{payment.id}. {payment.amount} PLN, {payment.date}
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -39,7 +39,12 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": [
+        "apps/bff-dashboard-e2e/**/*",
+        "apps/bff-accounts-e2e/**/*",
+        "apps/bff-payments-e2e/**/*"
+      ]
     },
     {
       "plugin": "@nx/vite/plugin",
