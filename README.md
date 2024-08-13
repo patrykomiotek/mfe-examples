@@ -68,6 +68,13 @@ nx serve mfe-settings
 For nested routes check `module-federation.config.ts` files. There is shared `react-router-dom` library and you can use e.g. `<Link />` component inside remote like `mfe-accounts`.
 
 
+## State management
+
+You can use plenty of state management techniques but similar like Pub?Sub mechanism you can create shared library for state management.
+
+* [React Context](https://react.dev/learn/passing-data-deeply-with-context) which you need to keep it inside `window` global variable
+* [useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
+* 
 
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
