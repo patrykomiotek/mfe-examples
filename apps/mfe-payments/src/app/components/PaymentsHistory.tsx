@@ -2,6 +2,8 @@ import { useApi } from '@mfexample/shared';
 import { PaymentDto } from '../types/PaymentDto';
 import { fetchPayments } from '../services/payments';
 
+import styles from './styles.module.css';
+
 export const PaymentsHistory = () => {
   const { data, isError, isLoading } = useApi<PaymentDto[]>(fetchPayments);
 
@@ -14,7 +16,7 @@ export const PaymentsHistory = () => {
   }
 
   return (
-    <div>
+    <div className={styles.paymentsContainer}>
       <h1>Payments history</h1>
       <ul>
         {data?.map((payment) => (

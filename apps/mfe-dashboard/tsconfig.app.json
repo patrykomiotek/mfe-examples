@@ -10,6 +10,7 @@
     ],
     "paths": {
       "*": ["apps/mfe-dashboard/@mf-types/*"],
+      "@mfe-accounts/*": ["apps/mfe-accounts/*"],
       "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
       "@mfexample/shared": ["libs/shared/src/index.ts"],
     }

@@ -4,11 +4,16 @@ import { SettingsContainer } from './SettingsContainer';
 import { SettingsAddress } from './SettingsAddress';
 import { SettingsEmail } from './SettingsEmail';
 import useSyncGlobalRouter from '../hooks/useSyncGlobalRouter';
+import styles from './styles.module.css';
 
 // workaround to sync navigation state between host and remote
 const RouteHandler = () => {
   useSyncGlobalRouter({ basename: '/settings' });
-  return <Outlet />;
+  return (
+    <div className={styles.settingsContainer}>
+      <Outlet />
+    </div>
+  );
 };
 
 const router = createMemoryRouter(
