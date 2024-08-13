@@ -3,7 +3,7 @@
 This is example of microfrontend architecture with Webpack Module Federation plugin and NX. NX is here used just to remove complexity with related libraries. Same effect we can use with YARN or PNPM workspaces.
 
 There are 4 microfrontends:
-* Accounts
+* Accounts (uses TranStack Query inside host and remote)
 * Dashboard
 * Payments
 * Settings (with nested routes)
