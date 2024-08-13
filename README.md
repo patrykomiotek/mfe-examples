@@ -1,5 +1,18 @@
 # Microfrontends Example
 
+This is example of microfrontend architecture with Webpack Module Federation plugin and NX. NX is here used just to remove complexity with related libraries. Same effect we can use with YARN or PNPM workspaces.
+
+There are 4 microfrontends:
+* Accounts
+* Dashboard
+* Payments
+* Settings (with nested routes)
+
+And three BFFs which simulates communication with microservices:
+* Accounts
+* Dashboard
+* Payments
+
 ## Quick start
 
 Make sure you have [NX](https://nx.dev/) installed. Then run command:
