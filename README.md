@@ -82,7 +82,7 @@ You can use plenty of state management techniques but similar like Pub?Sub mecha
 
 * [React Context](https://react.dev/learn/passing-data-deeply-with-context) which you need to keep it inside `window` global variable
 * [useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
-* 
+* [TranStack Query](https://tanstack.com/query/latest)
 
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
