@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
+      "@mfexample/shared": ["libs/shared/src/index.ts"],
       "about/Module": ["apps/about/src/remote-entry.ts"],
       "accounts/*": ["./apps/mfe-accounts/src/app/components/*"],
       "cart/Module": ["apps/cart/src/remote-entry.ts"],

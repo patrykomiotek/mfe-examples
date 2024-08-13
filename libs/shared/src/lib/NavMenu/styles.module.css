@@ -1,0 +1,8 @@
+.navMenu {
+  border-bottom: #000 1px solid;
+}
+
+.navMenu ul li {
+  display:inline;
+  padding: 6px 6px;
+}

@@ -2,14 +2,7 @@ import { Suspense, lazy } from 'react';
 
 import NxWelcome from './nx-welcome';
 
-import {
-  createBrowserRouter,
-  Link,
-  Outlet,
-  Route,
-  RouterProvider,
-  Routes,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { importRemote } from '@module-federation/utilities';
 
 import type DashboardModuleType from 'mfe-dashboard/Module';
@@ -17,7 +10,7 @@ import type AccountsModuleType from 'mfe-accounts/Module';
 import type PaymentsModuleType from 'mfe-payments/Module';
 import type SettingsModuleType from 'mfe-settings/Module';
 import type SettingsPanelType from 'mfe-settings/SettingsPanel';
-import { NavMenu } from './components/NavMenu';
+
 import useSyncAppRouter from './hooks/useSyncAppRouter';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';

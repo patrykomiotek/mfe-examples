@@ -11,6 +11,7 @@
     "paths": {
       "*": ["apps/shell/@mf-types/*"],
       "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
+      "@mfexample/shared": ["libs/shared/src/index.ts"],
     }
   },
   "exclude": [

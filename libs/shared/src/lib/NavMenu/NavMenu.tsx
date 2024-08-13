@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import styles from '../app.module.css';
+import styles from './styles.module.css';
 
 export const NavMenu = () => {
   return (
-    <nav>
+    <nav className={styles.navMenu}>
       <ul>
         <li>
           <Link to="/">Home</Link>
