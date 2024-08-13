@@ -19,6 +19,8 @@ import type SettingsModuleType from 'mfe-settings/Module';
 import type SettingsPanelType from 'mfe-settings/SettingsPanel';
 import { NavMenu } from './components/NavMenu';
 import useSyncAppRouter from './hooks/useSyncAppRouter';
+import { Layout } from './components/Layout';
+import { Home } from './components/Home';
 
 // static module loading
 // const MfeDashboard = React.lazy(() => import('mfe-dashboard/Module'));
@@ -103,13 +105,13 @@ const SettingsRouterHandler = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <>
-        <NavMenu />
-        <Outlet />
-      </>
-    ),
+    element: <Layout />,
     children: [
+      {
+        index: true,
+        path: '/',
+        element: <Home />,
+      },
       {
         path: '/dashboard',
         element: (

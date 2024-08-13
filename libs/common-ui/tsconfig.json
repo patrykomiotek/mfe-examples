@@ -5,16 +5,13 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "paths": {
-      "*": ["apps/shell/@mf-types/*"],
-      "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
-    }
+    "types": ["vite/client"]
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.spec.json"

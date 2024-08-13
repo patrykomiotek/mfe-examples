@@ -9,7 +9,8 @@
       "@nx/react/typings/image.d.ts"
     ],
     "paths": {
-      "*": ["apps/shell/@mf-types/*"]
+      "*": ["apps/shell/@mf-types/*"],
+      "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
     }
   },
   "exclude": [
