@@ -14,14 +14,17 @@ nx run-many -t serve -p bff-dashboard bff-accounts bff-payments
 
 Run separately:
 
+* bff-dashboard, port 3333
 ```bash
 nx serve bff-dashboard
 ```
 
+* bff-accounts, port 3334
 ```bash
 nx serve bff-accounts
 ```
 
+* bff-payments, port 3335
 ```bash
 nx serve bff-payments
 ```
