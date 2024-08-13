@@ -20,26 +20,31 @@ app.get('/api/payments', (req, res) => {
     {
       id: 5,
       amount: 510,
+      title: 'Kawiarnia Kraków',
       date: '13.08.2024',
     },
     {
       id: 4,
       amount: 200,
+      title: 'Multisklep Warszawa',
       date: '12.08.2024',
     },
     {
       id: 3,
       amount: 320,
+      title: 'Kawiarnia Wrocław',
       date: '10.08.2024',
     },
     {
       id: 2,
       amount: 440,
+      title: 'Multisklep Poznań',
       date: '08.08.2024',
     },
     {
       id: 1,
       amount: 100,
+      title: 'Księgarnia Łódź',
       date: '06.08.2024',
     },
   ]);

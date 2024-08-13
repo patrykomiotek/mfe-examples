@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+/* it's not ideal to keep global css here because it doesn't affect single microfrontends run separately - I recommend use different configuration */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 h1, h2, h3 {
   margin-top: 6px;
   margin-bottom: 6px
+}
+
+ul {
+  padding-left: 15px;
+}
+
+ul li {
+  font-size: 14px;
 }

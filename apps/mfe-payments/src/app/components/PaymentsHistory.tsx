@@ -12,13 +12,16 @@ const PaymentsHistory = () => {
       <h1>Payments history</h1>
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error</p>}
-      <ul>
+      <div>
         {data?.map((payment) => (
-          <li key={payment.id}>
-            #{payment.id}. {payment.amount} PLN, {payment.date}
-          </li>
+          <div key={payment.id} className={styles.paymentTile}>
+            <p className={styles.paymentTitle}>
+              {payment.amount} PLN, {payment.date}
+            </p>
+            <p className={styles.paymentDetails}>{payment.title}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
