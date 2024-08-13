@@ -16,11 +16,23 @@ export default composePlugins(
   withModuleFederation(moduleFederationConfig, { dts: false }), // temporary workaround https://github.com/nrwl/nx/issues/27198#issuecomment-2275420582
   // types are generated inside dist/apps/appName/@mf-types
   (config) => {
+    if (config.resolve) {
+      config.resolve.fallback = {
+        ...config.resolve?.fallback,
+        path: false,
+      };
+    }
+
+    // dashboard is isign this remote and needs types
+    // this will generate types for remotes for shell app and place it inside apps/shell/@mf-types
     config.plugins?.push(
       new FederatedTypesPlugin({
         federationConfig: {
           ...moduleFederationConfig,
           filename: 'remoteEntry.js',
+          remotes: {
+            'mfe-accounts': 'mfe-accounts@http://localhost:4204/remoteEntry.js',
+          },
         },
       })
     );

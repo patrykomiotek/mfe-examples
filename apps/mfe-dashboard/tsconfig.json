@@ -4,7 +4,12 @@
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "*": ["apps/mfe-dashboard/@mf-types/*"],
+      "@mfexample/common-ui": ["libs/common-ui/src/index.ts"],
+      "@mfexample/shared": ["libs/shared/src/index.ts"],
+    }
   },
   "files": [],
   "include": [],
