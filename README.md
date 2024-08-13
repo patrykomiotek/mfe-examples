@@ -1,7 +1,34 @@
 # Microfrontends Example
 
-Applications:
-* shell, port 4200 (host) this will run host and all remotes
+## Applications:
+
+### Backend
+
+BFFs: `bff-dashboard`, `bff-accounts`, `bff-payments`. You can run them together or separately.
+
+Run all:
+
+```bash
+nx run-many -t serve -p bff-dashboard bff-accounts bff-payments
+```
+
+Run separately:
+
+```bash
+nx serve bff-dashboard
+```
+
+```bash
+nx serve bff-accounts
+```
+
+```bash
+nx serve bff-payments
+```
+
+### Frontend
+
+* `shell`, port 4200 (host) this will run host and all remotes
 
 NOTE: `inside apps/shell/app/app.tsx` there are useful comments
 
@@ -38,23 +65,7 @@ nx serve mfe-settings
 For nested routes check `module-federation.config.ts` files. There is shared `react-router-dom` library and you can use e.g. `<Link />` component inside remote like `mfe-accounts`.
 
 
-## Backend
 
-There are few mock backends for the role Backend for Frontend role.
-
-You can run them:
-
-```bash
-nx serve bff-dashboard
-```
-
-```bash
-nx serve bff-accounts
-```
-
-```bash
-nx serve bff-payments
-```
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
